@@ -9,8 +9,6 @@ public class ATM {
         atm.start();
     }
 }
-
-// ======================= User Class =======================
 class User {
     private String userId;
     private String userPin;
@@ -34,8 +32,6 @@ class User {
         return account;
     }
 }
-
-// ======================= BankAccount Class =======================
 class BankAccount {
     private double balance;
     private List<Transaction> transactionHistory;
@@ -48,16 +44,16 @@ class BankAccount {
     public void deposit(double amount) {
         balance += amount;
         transactionHistory.add(new Transaction("Deposit", amount));
-        System.out.println("✅ Deposit successful. New Balance: ₹" + balance);
+        System.out.println("Deposit successful. New Balance: ₹" + balance);
     }
 
     public void withdraw(double amount) {
         if (amount <= balance) {
             balance -= amount;
             transactionHistory.add(new Transaction("Withdraw", amount));
-            System.out.println("✅ Withdrawal successful. Remaining Balance: ₹" + balance);
+            System.out.println(" Withdrawal successful. Remaining Balance: ₹" + balance);
         } else {
-            System.out.println("❌ Insufficient balance.");
+            System.out.println(" Insufficient balance.");
         }
     }
 
@@ -66,15 +62,15 @@ class BankAccount {
             balance -= amount;
             recipient.balance += amount;
             transactionHistory.add(new Transaction("Transfer", amount));
-            System.out.println("✅ Transfer successful.");
+            System.out.println("Transfer successful.");
         } else {
-            System.out.println("❌ Insufficient balance.");
+            System.out.println(" Insufficient balance.");
         }
     }
 
     public void printTransactionHistory() {
         if (transactionHistory.isEmpty()) {
-            System.out.println("📭 No transactions yet.");
+            System.out.println(" No transactions yet.");
         } else {
             for (Transaction t : transactionHistory) {
                 System.out.println(t);
@@ -86,8 +82,6 @@ class BankAccount {
         return balance;
     }
 }
-
-// ======================= Transaction Class =======================
 class Transaction {
     private String type;
     private double amount;
@@ -104,8 +98,6 @@ class Transaction {
         return type + " of ₹" + amount + " on " + timestamp;
     }
 }
-
-// ======================= ATMInterface Class =======================
 class ATMInterface {
     private User user;
     private Scanner scanner;
@@ -125,10 +117,10 @@ class ATMInterface {
         String inputPin = scanner.nextLine();
 
         if (inputId.equals(user.getUserId()) && inputPin.equals(user.getUserPin())) {
-            System.out.println("✅ Login successful.");
+            System.out.println(" Login successful.");
             showMenu();
         } else {
-            System.out.println("❌ Invalid credentials.");
+            System.out.println(" Invalid credentials.");
         }
     }
 
@@ -166,10 +158,10 @@ class ATMInterface {
                     user.getAccount().transfer(transfer, dummyRecipient);
                     break;
                 case 5:
-                    System.out.println("👋 Thank you for using the ATM. Goodbye!");
+                    System.out.println(" Thank you for using the ATM. Goodbye!");
                     break;
                 default:
-                    System.out.println("⚠️ Invalid choice. Try again.");
+                    System.out.println("⚠ Invalid choice. Try again.");
             }
         } while (choice != 5);
     }
